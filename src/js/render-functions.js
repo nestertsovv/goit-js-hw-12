@@ -1,5 +1,6 @@
 export function createTemplate(query) {
   let imagesArr = '';
+  console.log('RENDER');
 
   query.map(elem => {
     const {

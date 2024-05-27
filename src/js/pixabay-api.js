@@ -1,8 +1,7 @@
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
-import { showLoader, hideLoader } from '../main';
 import axios from 'axios';
-import { limit } from '../main';
+import { refs } from './refs';
 
 export async function getImages(query, page) {
   const BASE_URL = 'https://pixabay.com/api/';
@@ -14,10 +13,9 @@ export async function getImages(query, page) {
       orientation: 'horizontal',
       safesearch: true,
       page,
-      per_page: limit,
+      per_page: 15,
     },
   };
-  const loader = document.querySelector('.loader');
 
   showLoader();
 
@@ -45,4 +43,12 @@ export async function getImages(query, page) {
     .finally(() => {
       hideLoader();
     });
+}
+
+export function showLoader() {
+  refs.loader.style.display = 'block';
+}
+
+export function hideLoader() {
+  refs.loader.style.display = 'none';
 }

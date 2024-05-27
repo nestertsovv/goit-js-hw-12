@@ -4,13 +4,9 @@ import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 import { getImages } from './js/pixabay-api';
 import { createTemplate } from './js/render-functions';
+import { showLoader, hideLoader } from './js/pixabay-api';
+import { refs } from './js/refs';
 
-export const refs = {
-  formSearch: document.querySelector('.search-form'),
-  gallery: document.querySelector('.gallery'),
-  loader: document.querySelector('.loader'),
-  loadMoreBtn: document.querySelector('.load-more-btn'),
-};
 const optionsModal = {
   captionsData: 'alt',
   captionDelay: 250,
@@ -20,7 +16,7 @@ const lightbox = new simpleLightbox('.gallery a', optionsModal);
 
 let searchValue = null;
 let page = 1;
-export const limit = 15;
+const limit = 15;
 
 refs.formSearch.addEventListener('submit', onSubmit);
 refs.loadMoreBtn.addEventListener('click', onLoadMore);
@@ -103,12 +99,4 @@ function showMoreBtn() {
 
 function hideMoreBtn() {
   refs.loadMoreBtn.classList.add('is-hidden');
-}
-
-export function showLoader() {
-  refs.loader.style.display = 'block';
-}
-
-export function hideLoader() {
-  refs.loader.style.display = 'none';
 }
